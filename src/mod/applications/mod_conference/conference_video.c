@@ -3802,7 +3802,7 @@ void *SWITCH_THREAD_FUNC conference_video_muxing_thread_run(switch_thread_t *thr
 					mcu_layer_t *layer = NULL;
 					switch_image_t *use_img = NULL;
 
-					if (!omember->session || !switch_channel_test_flag(omember->channel, CF_VIDEO_READY) ||
+					if (!omember->session || !switch_channel_test_flag(omember->channel, CF_VIDEO_READY) || (conference_utils_test_flag(omember->conference, CFLAG_VIDEO_MUTE_EXIT_CANVAS) && !conference_utils_member_test_flag(omember, MFLAG_CAN_BE_SEEN)) || 
 						switch_core_session_media_flow(omember->session, SWITCH_MEDIA_TYPE_VIDEO) == SWITCH_MEDIA_FLOW_SENDONLY || switch_core_session_media_flow(omember->session, SWITCH_MEDIA_TYPE_VIDEO) == SWITCH_MEDIA_FLOW_INACTIVE) {
 						continue;
 					}
